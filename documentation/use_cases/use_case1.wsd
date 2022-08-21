@@ -1,0 +1,19 @@
+@startuml use_case1
+
+mainframe uc use case 1
+:User: as user
+:Crime Data Database: as cdb <<Database>>
+:System: as sys <<System>>
+
+usecase "Crime Heatmap Data Request" as uc1
+usecase "Retrieve Crime Data" as uc2
+usecase "Send Heatmap Data in REST JSON format" as uc3
+
+user --> uc1
+uc1 --> sys
+sys <--> uc2
+uc2 <--> cdb
+sys --> uc3
+uc3 --> user
+
+@enduml

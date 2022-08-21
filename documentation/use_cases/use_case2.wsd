@@ -1,0 +1,24 @@
+@startuml use_case2
+
+mainframe uc use case 2
+
+:User: as user
+:Crime Data Database: as cdb <<Database>>
+:System: as sys <<System>>
+
+usecase "Send user location coordinates from request" as uc1
+usecase "Search crime data within the range of user's setting" as uc2
+usecase "Calculate risk level of user current area" as uc3
+usecase "Send notification to user through SMS text/email" as uc4
+usecase "Do nothing" as uc5
+
+user --> uc1
+uc1 --> sys
+sys <--> uc2
+uc2 <--> cdb
+sys --> uc3
+uc3 --> (uc4) : Risk level is above user’s predefined threshold
+uc4 --> user
+uc3 --> (uc5) : Risk level is below user’s predefined threshold
+
+@enduml
