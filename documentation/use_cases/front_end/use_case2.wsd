@@ -1,0 +1,27 @@
+@startuml use_case2
+
+mainframe FE use case 2
+:User: as user
+:System: as sys <<System>>
+:Arcgis_display: as display_api <<DISP_API>>
+:Backend: as be <<server>>
+
+usecase "Zoom in or out" as zoom
+usecase "Check Zoom level" as check
+usecase "Send boundary" as send_bd
+usecase "Send Crime Data" as send_CD_BE
+usecase "Send Crime Data" as send_CD_sys
+usecase "generate Heat Map" as generate_HM
+
+user --> zoom
+zoom --> sys
+sys --> check
+sys --> send_bd
+send_bd --> be
+be --> send_CD_BE
+sys --> send_CD_sys
+send_CD_sys --> display_api
+display_api --> generate_HM
+generate_HM --> sys
+
+@enduml
