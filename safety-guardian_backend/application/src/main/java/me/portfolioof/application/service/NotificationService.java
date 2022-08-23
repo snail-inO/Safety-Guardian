@@ -2,7 +2,8 @@ package me.portfolioof.application.service;
 
 
 import me.portfolioof.application.entity.RiskAssessment;
+import me.portfolioof.application.entity.User;
 
 public interface NotificationService {
-    void notify(RiskAssessment riskAssessment);
+    boolean notify(User user, RiskAssessment riskAssessment);
 }
