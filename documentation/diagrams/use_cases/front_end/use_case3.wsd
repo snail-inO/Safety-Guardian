@@ -1,0 +1,21 @@
+@startuml use_case3
+
+mainframe FE use case 3
+:User: as user
+:System: as sys <<System>>
+:Arcgis_display: as display_api <<DISP_API>>
+
+usecase "Click on Map" as click
+usecase "Check Click location" as check
+usecase "Send Click location & Crime data" as send_info_sys
+usecase "Show location Crime data" as show
+
+user --> click
+click --> sys
+sys --> check
+sys --> send_info_sys
+send_info_sys --> display_api
+display_api --> show
+show --> sys
+
+@enduml

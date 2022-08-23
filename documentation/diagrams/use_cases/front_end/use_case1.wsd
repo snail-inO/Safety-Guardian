@@ -1,0 +1,30 @@
+@startuml use_case1
+
+mainframe FE use case 1
+:User: as user
+:System: as sys <<System>>
+:Arcgis_locator: as loc_api <<LOC_API>>
+:Arcgis_display: as display_api <<DISP_API>>
+:Backend: as be <<server>>
+
+usecase "Input a location" as input
+usecase "Request and check location information" as req_location
+usecase "Show location information" as return
+usecase "Send location is outside Syracuse" as return_case_1
+usecase "Send location information" as return_case_2
+
+user --> input
+input --> sys
+sys <--> req_location
+req_location <--> loc_api
+sys --> return
+return --> display_api
+sys --> return_case_1
+return_case_1 --> display_api
+sys --> return_case_2
+return_case_2 --> be
+
+
+
+
+@enduml

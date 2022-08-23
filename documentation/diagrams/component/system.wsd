@@ -1,0 +1,51 @@
+@startuml system_component
+
+component System {
+    [Mongo Repository] as mongo
+    [Risk Level Assement Service] as rla
+    [Notification Service] as notice
+    [Crime Data Transform Service] as cdt
+    [Crime Data Controller] as cdc
+    [Location Controller] as lc
+    component Entity
+
+    interface "Entity defination" as ed
+    interface "Query" as que
+    interface "Risk assessment" as ra
+    interface "Transformed Data" as td
+    interface "User location data" as uld
+
+    portin "Heatmap data request" as pi1
+    portin "Database data" as pi3
+    portin "Location update request" as pi2
+
+    portout "Heatmap data response" as po1
+    portout "External notifacation API" as po3
+    portout "Modified data" as po2
+}
+
+
+Entity --() ed
+ed )-- mongo
+mongo --() que
+
+pi2 --> lc
+lc --() uld
+uld )-- rla
+que )-- rla
+rla --() ra
+ra )-- notice
+notice --> po3
+
+uld )-- mongo
+
+que )-- cdt
+cdt --() td
+td )-- cdc
+cdc --> po1
+pi1 --> cdc
+
+pi3 --> mongo
+mongo ------> po2
+
+@enduml
