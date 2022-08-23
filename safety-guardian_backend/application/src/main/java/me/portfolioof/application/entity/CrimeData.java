@@ -29,12 +29,31 @@ public class CrimeData {
     public CrimeData() {
     }
 
-    public CrimeData(Long id, String address, String addressType, String street, String streetType, double x, double y, Date reportDate, int timeStart, int timeEnd, CrimeType crimeType, boolean arrested, String larcenyCode) {
+    public CrimeData(CrimeData crimeData) {
+        this.id = crimeData.id;
+        this.address = crimeData.address;
+        this.addressType = crimeData.addressType;
+        this.streetDir = crimeData.streetDir;
+        this.street = crimeData.street;
+        this.streetType = crimeData.streetType;
+        this.x = crimeData.x;
+        this.y = crimeData.y;
+        this.reportDate = crimeData.reportDate;
+        this.timeStart = crimeData.timeStart;
+        this.timeEnd = crimeData.timeEnd;
+        this.crimeType = crimeData.crimeType;
+        this.arrested = crimeData.arrested;
+        this.larcenyCode = crimeData.larcenyCode;
+
+    }
+
+    public CrimeData(Long id, String address, String addressType, String street, String streetType, char streetDir, double x, double y, Date reportDate, int timeStart, int timeEnd, CrimeType crimeType, boolean arrested, String larcenyCode) {
         this.id = id;
         this.address = address;
         this.addressType = addressType;
         this.street = street;
         this.streetType = streetType;
+        this.streetDir = streetDir;
         this.x = x;
         this.y = y;
         this.reportDate = reportDate;
