@@ -3,6 +3,7 @@ package me.portfolioof.application.service;
 import me.portfolioof.application.DAO.CrimeDataDAO;
 import me.portfolioof.application.entity.CrimeData;
 import me.portfolioof.application.entity.RiskAssessment;
+import me.portfolioof.application.entity.User;
 import me.portfolioof.library.enums.RiskLevel;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,16 @@ public class RiskAssessmentServiceImpl implements RiskAssessmentService {
         RiskAssessment assessment = new RiskAssessment();
         assessment.setCrimeDataList(crimeDataDAO.findByDistance(x, y, range).orElseThrow(RuntimeException::new));
         assessment.setRiskLevel(calculateRisk(assessment.getCrimeDataList()));
+        assessment.setX(x);
+        assessment.setY(y);
+        assessment.setRange(range);
 
         return assessment;
+    }
+
+    @Override
+    public RiskAssessment assess(User user) {
+        return assess(user.getLatestX(), user.getLatestY(), user.getDetectRange());
     }
 
     private RiskLevel calculateRisk(List<CrimeData> crimeDataList) {

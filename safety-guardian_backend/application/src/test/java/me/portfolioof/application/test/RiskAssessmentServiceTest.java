@@ -67,7 +67,7 @@ public class RiskAssessmentServiceTest {
         crimeData.setCrimeType(new CrimeType(0, "", 1F));
         crimeDataList.add(crimeData);
 
-        RiskAssessment assessment = new RiskAssessment(RiskLevel.SAFE, crimeDataList);
+        RiskAssessment assessment = new RiskAssessment(null, 1.0, 2.0, 3.0, RiskLevel.SAFE, crimeDataList);
 
         Mockito.when(crimeDataDAO.findByDistance(1.0, 2.0, 3.0)).thenReturn(Optional.of(crimeDataList));
         Assertions.assertEquals(riskAssessmentService.assess(1.0, 2.0, 3.0), assessment);

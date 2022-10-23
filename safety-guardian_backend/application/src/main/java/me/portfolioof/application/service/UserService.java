@@ -1,10 +1,10 @@
 package me.portfolioof.application.service;
 
-
 import me.portfolioof.application.entity.RiskAssessment;
 import me.portfolioof.application.entity.User;
 
-public interface RiskAssessmentService {
-    RiskAssessment assess(double x, double y, double range);
-    RiskAssessment assess(User user);
+public interface UserService {
+    User retrieveUser(Long uid);
+    User updateUser(User user);
+    RiskAssessment assessRisk(Long uid);
 }

@@ -10,6 +10,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -19,6 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping("/crime_data")
 public class CrimeDataController {
 
     private final CrimeDataEntityAssembler assembler;
@@ -29,7 +31,7 @@ public class CrimeDataController {
         this.crimeDataDAO = crimeDataDAO;
     }
 
-    @GetMapping("/crime_data")
+    @GetMapping
     public PagedModel<EntityModel<CrimeData>> retrieveCrimeDataPage(@PageableDefault Pageable pageable) {
         Page<CrimeData> crimeDataPage = crimeDataDAO.findAll(pageable);
         Collection<EntityModel<CrimeData>> crimeDataModels = crimeDataPage.getContent().stream()
@@ -43,7 +45,7 @@ public class CrimeDataController {
                 linkTo(methodOn(CrimeDataController.class).retrieveCrimeDataPage(pageable)).withSelfRel());
     }
 
-    @GetMapping("/crime_data/{cid}")
+    @GetMapping("/{cid}")
     public EntityModel<CrimeData> retrieveCrimeData(@PathVariable(name = "cid") Long cid) {
         return assembler.toModel(crimeDataDAO.findById(cid).get());
     }
