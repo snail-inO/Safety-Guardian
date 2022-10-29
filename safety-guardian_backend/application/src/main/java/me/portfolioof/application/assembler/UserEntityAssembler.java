@@ -15,6 +15,7 @@ public class UserEntityAssembler implements RepresentationModelAssembler<User, E
     public EntityModel<User> toModel(User entity) {
         return EntityModel.of(entity,
                 linkTo(methodOn(UserController.class).retrieveUser(entity.getId())).withSelfRel(),
+                linkTo(methodOn(UserController.class).updateUser(entity)).withRel("update user"),
                 linkTo(methodOn(UserController.class).assessRisk(entity.getId())).withRel("assessRisk"));
     }
 }
