@@ -24,4 +24,5 @@ public class RouteCalculationController {
         return assembler.toModel(routeCalculationService.calculate(from, to));
     }
 
+
 }

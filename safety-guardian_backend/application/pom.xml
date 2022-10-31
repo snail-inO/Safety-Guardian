@@ -42,6 +42,10 @@
             <artifactId>twilio</artifactId>
             <version>8.34.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>me.portfolio-of</groupId>
@@ -52,7 +56,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <!--            <scope>runtime</scope>-->
+<!--            <scope>runtime</scope>-->
         </dependency>
 
         <dependency>

@@ -3,6 +3,7 @@ package me.portfolioof.application.controller;
 import me.portfolioof.application.DAO.CrimeDataDAO;
 import me.portfolioof.application.assembler.CrimeDataEntityAssembler;
 import me.portfolioof.application.entity.CrimeData;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -31,6 +32,7 @@ public class CrimeDataController {
         this.crimeDataDAO = crimeDataDAO;
     }
 
+    @Cacheable(value = "crime_data_page", key = "#pageable")
     @GetMapping
     public PagedModel<EntityModel<CrimeData>> retrieveCrimeDataPage(@PageableDefault Pageable pageable) {
         Page<CrimeData> crimeDataPage = crimeDataDAO.findAll(pageable);

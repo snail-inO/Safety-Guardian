@@ -40,4 +40,5 @@ public class UserController {
     public EntityModel<RiskAssessment> assessRisk(@PathVariable("uid") Long uid) {
         return riskAssessmentEntityAssembler.toModel(userService.assessRisk(uid));
     }
+
 }

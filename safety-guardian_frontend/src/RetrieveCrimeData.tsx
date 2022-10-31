@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 const URL = "http://localhost:8080/crime_data";
@@ -25,7 +24,6 @@ export default async function getCrimeData(): Promise<Array<[number, number, num
       .get(URL + SIZE + "&page=" + page.toString())
       .then((response) => {
         spots = spots.concat(extractCoords(response.data._embedded.crimeDataList));
-        console.log(spots.length);
       })
       .catch((error) => {
         console.log("Retrieve crime data error: " + error);
@@ -33,7 +31,7 @@ export default async function getCrimeData(): Promise<Array<[number, number, num
     page++;
   }
 
-  return await spots;
+  return spots;
 }
 
 function extractCoords(crimeDataList: Array<any>): Array<[number, number, number]> {

@@ -8,7 +8,7 @@ import java.util.*;
 
 @Component
 public class RouteCalculationStrategyASImpl implements RouteCalculationStrategy{
-    private final static double STEP = 0.05;
+    private final static double STEP = 0.005;
     private final static double[] LAT_BOUND = new double[]{42.5, 43.5};
     private final static double[] LNG_BOUND = new double[]{-76.5, -75.5};
 
