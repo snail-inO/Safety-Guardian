@@ -2,6 +2,7 @@ package me.portfolioof.application.DAO;
 
 import me.portfolioof.application.entity.CrimeData;
 import org.springframework.cache.annotation.Cacheable;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
